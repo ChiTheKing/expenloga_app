@@ -1,12 +1,12 @@
-class Bar {
-  Bar({required this.cateIndex, required this.amounted});
+import 'package:equatable/equatable.dart';
+
+class Bar extends Equatable {
+  final int? cateIndex;
+  final int? amounted;
+
+  const Bar({required this.cateIndex, required this.amounted});
 
   //gotten from equatable package
   @override
-  bool operator ==(Object other) {
-    return super == other;
-  }
-
-  int? cateIndex;
-  int? amounted;
+  List<Object?> get props => [cateIndex, amounted];
 }

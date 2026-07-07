@@ -7,7 +7,7 @@ import 'package:expenloga_app/expense_cubit.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+//import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:image_picker/image_picker.dart';
@@ -105,7 +105,11 @@ class _AddExpensePageState extends State<AddExpensePage> {
                                 value: category,
                                 child: Row(
                                   children: [
-                                    FaIcon(category.icon, color: Colors.blue),
+                                    FaIcon(
+                                      categoryNames[category.iconKey] ??
+                                          FontAwesomeIcons.circleQuestion,
+                                      color: Colors.blue,
+                                    ),
                                     const SizedBox(width: 12),
                                     Text(category.title),
                                   ],
@@ -148,8 +152,8 @@ class _AddExpensePageState extends State<AddExpensePage> {
                     decoration: InputDecoration(errorText: errorText2),
                   ),
                   Column(
-                    mainAxisAlignment: .spaceBetween,
-                    mainAxisSize: .min,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisSize: MainAxisSize.min,
                     children: [
                       Text('date of purchase'),
                       SizedBox(height: 10),
@@ -178,7 +182,7 @@ class _AddExpensePageState extends State<AddExpensePage> {
                                   Radius.circular(16),
                                 ),
                               ),
-                              alignment: .center,
+                              alignment: Alignment.center,
 
                               width: 170,
                               height: 40,
@@ -187,7 +191,7 @@ class _AddExpensePageState extends State<AddExpensePage> {
                                 DateFormat('d MMM yyyy').format(_dateTime),
                                 style: TextStyle(
                                   fontSize: 12,
-                                  fontWeight: .bold,
+                                  fontWeight: FontWeight.bold,
                                   color: Colors.black,
                                 ),
                               ),
@@ -236,11 +240,8 @@ class _AddExpensePageState extends State<AddExpensePage> {
                           dateText,
                           // this helps reduce the file to just the name(String) of it's path.
                           imagine?.path,
-                          //This is basically just for getting the index of the selectedCategory Category from the categories list
-                          categories.indexWhere(
-                            (category) =>
-                                category.title == selectedCategory!.title,
-                          ),
+                          // REPLACED INDEX SEARCH WITH THE TRUE DATABASE ID
+                          selectedCategory!.id,
                         );
                         context.read<BarChartCubit>().getBarData(
                           categories.indexOf(selectedCategory!),

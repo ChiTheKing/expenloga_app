@@ -1,22 +1,26 @@
 import 'package:expenloga_app/Bar/bar_chart_cubit.dart';
+import 'package:expenloga_app/database_stuff/database.dart';
 import 'package:expenloga_app/expense_cubit.dart';
 import 'package:expenloga_app/image_page.dart';
 import 'package:expenloga_app/my_home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'database_stuff/blueprint.dart';
 
 void main() {
-  runApp(const MyApp());
+  final database = DataBase();
+  runApp(MyApp(database: database));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final DataBase database;
+  const MyApp({super.key, required this.database});
 
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider<ExpenseCubit>(create: (_) => ExpenseCubit()),
+        BlocProvider<ExpenseCubit>(create: (_) => ExpenseCubit(database)),
         BlocProvider<BarChartCubit>(create: (_) => BarChartCubit()),
       ],
       child: MaterialApp(

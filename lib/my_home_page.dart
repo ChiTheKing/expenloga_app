@@ -38,7 +38,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     style: TextStyle(
                       color: Colors.blue,
                       fontSize: 20,
-                      fontWeight: .bold,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
                 )
@@ -89,12 +89,13 @@ class _MyHomePageState extends State<MyHomePage> {
                                               child: SizedBox(
                                                 width: 25,
                                                 child: Text(
-                                                  overflow: .ellipsis,
-                                                  textAlign: .start,
+                                                  overflow:
+                                                      TextOverflow.ellipsis,
+                                                  textAlign: TextAlign.start,
                                                   displayName,
                                                   style: TextStyle(
                                                     fontSize: 9,
-                                                    fontWeight: .bold,
+                                                    fontWeight: FontWeight.bold,
                                                   ),
                                                 ),
                                               ),
@@ -174,7 +175,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               child: Text(
                                 state1.isEmpty ? '' : 'Recent transactions',
 
-                                style: TextStyle(fontWeight: .bold),
+                                style: TextStyle(fontWeight: FontWeight.bold),
                               ),
                             ),
                             Container(
@@ -194,8 +195,12 @@ class _MyHomePageState extends State<MyHomePage> {
                                 itemBuilder: (context, index) {
                                   return InkWell(
                                     child: ListTile(
+                                      //FaIcon(categoryNames[category.iconKey] ?? FontAwesomeIcons.circleQuestion, color: Colors.blue)
                                       leading: FaIcon(
-                                        state1[index].selectedCategory!.icon,
+                                        categoryNames[state1[index]
+                                                .selectedCategory!
+                                                .iconKey] ??
+                                            FontAwesomeIcons.circleQuestion,
                                         color: Colors.white,
                                         size: 40,
                                       ),
@@ -211,8 +216,10 @@ class _MyHomePageState extends State<MyHomePage> {
                                         ),
                                       ),
                                       trailing: Column(
-                                        crossAxisAlignment: .end,
-                                        mainAxisAlignment: .spaceEvenly,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.end,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceEvenly,
                                         children: [
                                           Text(
                                             NumberFormat(
